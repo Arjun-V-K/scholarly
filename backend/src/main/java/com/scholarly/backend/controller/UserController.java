@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.scholarly.backend.model.LoginRequest;
 import com.scholarly.backend.model.User;
 import com.scholarly.backend.service.UserService;
 
@@ -48,4 +49,8 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    @PostMapping("/login")
+    public boolean login(@RequestBody LoginRequest loginRequest) {
+        return userService.authenticate(loginRequest);
+    }
 }
